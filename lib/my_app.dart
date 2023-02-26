@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'form_builder_page.dart';
+import 'pages/form_builder_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
