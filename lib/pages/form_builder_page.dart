@@ -14,7 +14,7 @@ class FormBuilderPage extends StatefulWidget {
 class _FormBuilderPageState extends State<FormBuilderPage> {
   final formKey = GlobalKey<FormBuilderState>();
 
-  var genderOptions = ['Male', 'Female', 'Other'];
+  List<String> genderOptions = ['Male', 'Female', 'Other'];
 
   Future<bool> onWillPop() async {
     debugPrint('onWillPop set to false');
@@ -31,8 +31,8 @@ class _FormBuilderPageState extends State<FormBuilderPage> {
           onChanged: () => debugPrint('From has been changed.'),
           onWillPop: onWillPop,
           initialValue: const {
-            'TextField1': 'no',
-            'TextField2': 'yes',
+            'TextField1': '',
+            'TextField2': '',
           },
           skipDisabled: true,
           // This does not save and read the disabled textFields.
@@ -53,9 +53,7 @@ class _FormBuilderPageState extends State<FormBuilderPage> {
                       fillColor: Colors.white70,
                     ),
                     validator: FormBuilderValidators.equal('no'),
-                    onChanged: (value) {
-                      debugPrint(value);
-                    },
+                    onChanged: (value) => debugPrint(value),
                     valueTransformer: (value) => value?.toUpperCase(),
                   ),
                   const SizedBox(height: 8),
@@ -155,12 +153,10 @@ class _FormBuilderPageState extends State<FormBuilderPage> {
                   FormBuilderDropdown(
                     name: 'Gender',
                     items: genderOptions
-                        .map(
-                          (gender) => DropdownMenuItem(
-                            value: gender,
-                            child: Text(gender),
-                          ),
-                        )
+                        .map((gender) => DropdownMenuItem(
+                              value: gender,
+                              child: Text(gender),
+                            ))
                         .toList(),
                     initialValue: genderOptions.first,
                     decoration:
